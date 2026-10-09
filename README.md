@@ -36,38 +36,45 @@ That's it! It automatically handles submitting, loading states, validation, and 
 
 ---
 
-## Styling (Tailwind / Custom CSS)
+## Customization & Styling (Zero CSS / Tailwind Required)
 
-`WaitlistForm` is unstyled by default so it fits right into your design. You can pass classes to each element:
+`WaitlistForm` comes with responsive built-in inline styles so you don't need to write Tailwind CSS or external CSS files. The input field and button sit cleanly in the same row, with the input automatically expanding to take up more width than the button.
 
 ```tsx
 <WaitlistForm
   baseUrl="https://your-backend.vercel.app"
   projectId="my-project"
-  className="flex flex-col gap-2 max-w-sm w-full"
-  inputClassName="border px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-  buttonClassName="bg-black text-white px-4 py-2 rounded-md hover:bg-neutral-800 disabled:opacity-50"
-  messageClassName="text-sm mt-1 text-neutral-600"
+  maxWidth="500px"
+  borderRadius="8px"
+  buttonColor="#2563eb"
+  buttonTextColor="#ffffff"
 />
 ```
+
+When the user clicks (focuses) the email input, the outline color automatically matches `buttonColor` (e.g. `#2563eb`).
 
 ---
 
 ## Props
 
-| Prop                     | Default             | Description                                                 |
-| ------------------------ | ------------------- | ----------------------------------------------------------- |
-| `baseUrl` _(required)_   | —                   | Your self-hosted waitlist backend URL                       |
-| `projectId` _(required)_ | —                   | Your project ID created on the backend                      |
-| `placeholder`            | `"you@example.com"` | Input placeholder text                                      |
-| `buttonLabel`            | `"Join waitlist"`   | Button label                                                |
-| `loadingLabel`           | `"Joining..."`      | Button label while submitting                               |
-| `onSuccess`              | —                   | Callback: `(status: "success" \| "already_exists") => void` |
-| `onError`                | —                   | Callback: `(message: string) => void`                       |
-| `className`              | `""`                | Class name for `<form>`                                     |
-| `inputClassName`         | `""`                | Class name for `<input>`                                    |
-| `buttonClassName`        | `""`                | Class name for `<button>`                                   |
-| `messageClassName`       | `""`                | Class name for `<p role="status">`                          |
+| Prop               | Default             | Description                                                                          |
+| ------------------ | ------------------- | ------------------------------------------------------------------------------------ |
+| `baseUrl` _(req)_  | —                   | Your self-hosted waitlist backend URL                                                |
+| `projectId` _(req)_| —                   | Your project ID created on the backend                                               |
+| `placeholder`      | `"you@example.com"` | Input placeholder text                                                               |
+| `buttonLabel`      | `"Join waitlist"`   | Button label                                                                         |
+| `loadingLabel`     | `"Joining..."`      | Button label while submitting                                                        |
+| `successMessage`   | —                   | Custom text shown on successful email submission                                     |
+| `width`            | `"100%"`            | Form width (e.g., `"100%"`, `"400px"`, `400`)                                        |
+| `maxWidth`         | `"100%"`            | Form max width (e.g., `"500px"`, `500`)                                              |
+| `borderRadius`     | `"8px"`             | Border radius for both input box and button (e.g., `"8px"`, `8`, `"0.5rem"`)         |
+| `buttonColor`      | `"#000000"`         | Button background color. Automatically becomes input focus outline color when clicked |
+| `buttonTextColor`  | `"#ffffff"`         | Button text color                                                                    |
+| `showModal`        | `true`              | Displays a responsive modal popup for status feedback (success, error, already registered) |
+| `onSuccess`        | —                   | Callback: `(status: "success" \| "already_exists") => void`                          |
+| `onError`          | —                   | Callback: `(message: string) => void`                                                |
+| `style`            | —                   | Extra inline styles for `<form>`                                                     |
+| `className`        | `""`                | Extra class name for `<form>`                                                        |
 
 ---
 
@@ -95,10 +102,7 @@ if (res.ok) {
 
 ## Backend Setup
 
-Need a backend? Deploy your own free copy of [waitlist-email](https://github.com/Durjoy96/waitlist-email) to Vercel in 1 click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Durjoy96/waitlist-email)
-
+Need a backend? Deploy your own free copy of [waitlist-email](https://github.com/Durjoy96/waitlist-email)
 ---
 
 ## License
